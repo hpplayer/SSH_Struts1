@@ -1,0 +1,22 @@
+#
+#Sat May 10 11:06:45 CST 2008
+genBasicCompId=false
+sessionFactoryName=com.zjy.hibernate.HibernateSessionFactory
+profile=
+daoSFId=sessionFactoryBean
+version=3.1
+jndiPath=
+detectM2M=false
+reStrategyClass=
+springDaoFile=src/applicationContext.xml
+useJavaTypes=true
+keyGenerator=increment
+libInstallFolder=/WebRoot/WEB-INF/lib
+addLibs2Project=true
+genVersionTag=false
+sessionFactoryId=sessionFactoryBean
+basePersistenceClass=
+reSettingsFile=
+configFile=/SSHProjectTwo/src/applicationContext.xml
+createConfigFile=false
+addLibs2Classpath=true

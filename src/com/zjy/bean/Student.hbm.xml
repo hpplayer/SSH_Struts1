@@ -1,0 +1,14 @@
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.zjy.bean.Student" table="student">
+		<id name="id" column="ID" type="java.lang.Integer">
+			<generator class="increment" />
+		</id>
+		<property name="name" column="name" type="java.lang.String" />
+		<property name="pwd" column="pwd" type="java.lang.String" />
+		<property name="homeAdd" column="homeAdd" type="java.lang.String" />
+		<property name="majorID" column="majorID" type="java.lang.Integer" />
+		<property name="grade" column="grade" type="java.lang.Integer" />
+	</class>
+</hibernate-mapping>

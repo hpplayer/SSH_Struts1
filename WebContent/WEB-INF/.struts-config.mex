@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlowViewLayout Version="1.2">
+  <StrutsActivity path="/loginAction.do" location="50,50" dimension="168,88" />
+  <StrutsActivity path="/pageAction.do" location="350,250" dimension="167,88" />
+  <StrutsActivity path="/updateAction.do" location="950,250" dimension="178,88" />
+  <StrutsActivity path="/deleteAction.do" location="50,350" dimension="103,62" />
+  <StrutsActivity path="/insertAction.do" location="650,350" dimension="172,88" />
+  <StrutsActivity path="page;6" location="950,50" dimension="67,75" />
+  <StrutsActivity path="failure;6" location="650,150" dimension="73,75" />
+  <StrutsActivity path="/page.jsp" location="350,150" dimension="75,49" />
+  <StrutsActivity path="/failure.jsp" location="350,450" dimension="81,49" />
+  <StrutsActivity path="/failure" location="50,250" dimension="63,49" />
+  <StrutsTransition id="page;6,null,/page.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="950,114" />
+      <AbsolutePoint location="387,114" />
+      <AbsolutePoint location="387,150" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="failure;6,null,/failure.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="650,184" />
+      <AbsolutePoint location="592,184" />
+      <AbsolutePoint location="592,474" />
+      <AbsolutePoint location="431,474" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+</FlowViewLayout>
+

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- hibernate-mapping用来哪些对象与数据库中的表相互映射, 在hibernate-mapping中可以配置多个的对象与数据库中的表之间的映射， 
+	而class就用来指定那个对象与数据库中那个表相对应 -->
+<hibernate-mapping>
+	<!-- 该class用来配置数据库中的customer表与类Customer之间的映射关系, name属性用来指定所要配置类的包路径和类名, 
+		table属性用来指定类与相对应数据库中的表，该表的名称为customer, id属性用来指定主键属性，在id标签中的name属性用来指定类的属性，type属性用来指定该属性的类型, 
+		id标签的generator的class用来指定主键生成策略 -->
+	<class name="com.zjy.bean.Customer" table="student">
+		<id name="id" column="id" type="java.lang.Integer">
+			<generator class="increment" />
+		</id>
+		<!-- 该property标签用来配置Customer类的username的属性与customer表的username列相对应 -->
+		<property name="username" column="name" type="java.lang.String" />
+		<!-- 该property标签用来配置Customer类的password的属性与customer表的password列相对应 -->
+		<property name="password" column="pwd" type="java.lang.String" />
+	</class>
+</hibernate-mapping>

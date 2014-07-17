@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+	<!-- bean标签是用来配置受托管的对象, id属性用来指定该被托管对象的名称, class属性用来指定受托管对象的包路径和类名, 在bean标签中的property属性用来配置该托管对象的属性， -->
+
+	<!-- 该bean标签用来配置数据源对象,该对象的名称为MySql_DataSource, 该对象的包路径和类名为org.apache.commons.dbcp.BasicDataSource, 
+		同时设置该对象的驱动程序类型driverClassName属性，并设置该属性的值为com.mysql.jdbc.Driver， 设置数据库连接的地址url属性，并设置该属性的值为jdbc:mysql://localhost:3306/hibernate, 
+		设置登录的用户名username属性,并设置该属性的值为root, 设置登录的密码属性为123456 -->
+	<bean id="MySql_DataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver">
+		</property>
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/studb">
+		</property>
+		<property name="username" value="root"></property>
+		<property name="password" value="123"></property>
+	</bean>
+	<!-- 该bean标签用来配置LocalSessionFactoryBean对象, 该对象的名称为sessionFactoryBean,该对象的包路径和类名为org.springframework.orm.hibernate3.LocalSessionFactoryBean, 
+		同时设置该对象的数据源属性，并设置该属性的值为上面所配置的MySql_DataSource对象， 设置该对象的hibernate属性，并设置Hibernate的方言属性为org.hibernate.dialect.MySQLDialect， 
+		因为在本例子中使用的数据库是MySql -->
+	<bean id="sessionFactoryBean"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="MySql_DataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQLDialect
+				</prop>
+			</props>
+		</property>
+		<!-- 该property属性用来配置，该会话工程对象的中的映射资源， -->
+		<property name="mappingResources">
+			<list>
+				<value>com/zjy/bean/Customer.hbm.xml</value>
+				<value>com/zjy/bean/Admin.hbm.xml</value>
+				<value>com/zjy/bean/Classes.hbm.xml</value>
+				<value>com/zjy/bean/Major.hbm.xml</value>
+				<value>com/zjy/bean/Stuclass.hbm.xml</value>
+				<value>com/zjy/bean/Student.hbm.xml</value>
+				<value>com/zjy/bean/Teacher.hbm.xml</value>
+			</list>
+		</property>
+	</bean>
+	<!-- 该bean标签用来配置数据库中customer表的数据据访问对象,从而实现对customer表的增删改查操作, 该对象的名称为customerDao,该对象的包路径和类名为com.zjy.dao.impl.CustomerDaoImpl, 
+		同时设置该对象的属性会话工厂属性sessionFactory，并设置该属性的值为上面所配置的sessionFactoryBean -->
+	<bean id="customerDao" class="com.zjy.dao.impl.CustomerDaoImpl">
+		<property name="sessionFactory">
+			<ref local="sessionFactoryBean" />
+		</property>
+	</bean>
+	<bean id="adminDao" class="com.zjy.dao.impl.AdminDaoImpl">
+		<property name="sessionFactory">
+			<ref local="sessionFactoryBean" />
+		</property>
+	</bean>
+	<bean id="classDao" class="com.zjy.dao.impl.ClassDaoImpl">
+		<property name="sessionFactory">
+			<ref local="sessionFactoryBean" />
+		</property>
+	</bean>
+	<bean id="majorDao" class="com.zjy.dao.impl.MajorDaoImpl">
+		<property name="sessionFactory">
+			<ref local="sessionFactoryBean" />
+		</property>
+	</bean>
+	<bean id="stuclassDao" class="com.zjy.dao.impl.StuClassDaoImpl">
+		<property name="sessionFactory">
+			<ref local="sessionFactoryBean" />
+		</property>
+	</bean>
+	<bean id="studentDao" class="com.zjy.dao.impl.StudentDaoImpl">
+		<property name="sessionFactory">
+			<ref local="sessionFactoryBean" />
+		</property>
+		<property name="stuclassDao">
+			<ref local="stuclassDao" />
+		</property>
+	</bean>
+	<bean id="teacherDao" class="com.zjy.dao.impl.TeacherDaoImpl">
+		<property name="sessionFactory">
+			<ref local="sessionFactoryBean" />
+		</property>
+	</bean>
+	<!-- 该bean标签用来配置对customer表的业务逻辑对象,该对象的名称为customerService, 该对象的包路径和类名为com.zjy.service.impl.CustomerServiceImpl, 
+		同时设置该对象的数据访问对象customerDao属性，并设置该属性的值为上面所配置的customerDao -->
+	<bean id="customerService" class="com.zjy.service.impl.CustomerServiceImpl">
+		<property name="customerDao">
+			<ref local="customerDao" />
+		</property>
+	</bean>
+	<bean id="adminService" class="com.zjy.service.impl.AdminServiceImpl">
+		<property name="adminDao">
+			<ref local="adminDao" />
+		</property>
+		<property name="studentDao">
+			<ref local="studentDao" />
+		</property>
+		<property name="teacherDao">
+			<ref local="teacherDao" />
+		</property>
+		<property name="majorDao">
+			<ref local="majorDao" />
+		</property>
+	</bean>
+	<bean id="classService" class="com.zjy.service.impl.ClassServiceImpl">
+		<property name="classDao">
+			<ref local="classDao" />
+		</property>
+		<property name="teacherDao">
+			<ref local="teacherDao" />
+		</property>
+	</bean>
+	<bean id="majorService" class="com.zjy.service.impl.MajorServiceImpl">
+		<property name="majorDao">
+			<ref local="majorDao" />
+		</property>
+	</bean>
+	<bean id="stuclassService" class="com.zjy.service.impl.StuClassServiceImpl">
+		<property name="stuclassDao">
+			<ref local="stuclassDao" />
+		</property>
+		<property name="studentDao">
+			<ref local="studentDao" />
+		</property>
+		<property name="classDao">
+			<ref local="classDao" />
+		</property>
+	</bean>
+	<bean id="studentService" class="com.zjy.service.impl.StudentServiceImpl">
+		<property name="studentDao">
+			<ref local="studentDao" />
+		</property>
+		<property name="majorDao">
+			<ref local="majorDao" />
+		</property>
+	</bean>
+	<bean id="teacherService" class="com.zjy.service.impl.TeacherServiceImpl">
+		<property name="teacherDao">
+			<ref local="teacherDao" />
+		</property>
+		<property name="stuclassDao">
+			<ref local="stuclassDao" />
+		</property>
+		<property name="studentDao">
+			<ref local="studentDao" />
+		</property>
+		<property name="classDao">
+			<ref local="classDao" />
+		</property>
+	</bean>
+
+
+
+
+
+
+
+
+</beans>

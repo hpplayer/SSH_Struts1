@@ -1,0 +1,10 @@
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.zjy.bean.Major" table="major">
+		<id name="majorid" column="majorID" type="java.lang.Integer">
+			<generator class="increment" />
+		</id>
+		<property name="majorname" column="majorname" type="java.lang.String" />
+	</class>
+</hibernate-mapping>

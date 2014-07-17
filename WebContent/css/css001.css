@@ -1,0 +1,25 @@
+.l-r-b-1pxline {
+	border-top: 1px none EEECEF;
+	border-right: 1px solid EEECEF;
+	border-bottom: 1px solid EEECEF;
+	border-left: 1px solid EEECEF;
+}
+
+.l-r-t-b-1pxline {
+	border: 1px solid EEECEF;
+}
+
+.r-t-b1pxline {
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: none;
+	border-top-color: EEECEF;
+	border-right-color: EEECEF;
+	border-bottom-color: EEECEF;
+	border-left-color: EEECEF;
+}
